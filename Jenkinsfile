@@ -12,8 +12,9 @@ pipeline {
   }
 
   stages {
-    hen{
-        anyof{
+    stage('Test conditional') {
+      when{
+        anyOf{
           expression {
             return env.GIT_BRANCH == 'origin/master';
           }
@@ -21,8 +22,7 @@ pipeline {
             return env.GIT_BRANCH == 'origin/v3.5.0';
           }
         }
-      }
-    stage('Test conditional') {
+    }
       steps {
         script {
           echo 'Pulled - ' + env.GIT_BRANCH
