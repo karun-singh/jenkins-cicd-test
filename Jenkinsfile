@@ -12,17 +12,17 @@ pipeline {
   }
 
   stages {
-    when{
-        anyof{
-          expression {
-            return env.GIT_BRANCH == 'origin/master';
-          }
-          expression {
-            return env.GIT_BRANCH == 'origin/v3.5.0';
-          }
-        }
-      }
     stage('Test conditional') {
+      when{
+        anyof{
+        expression {
+            return env.GIT_BRANCH == 'origin/master';
+        }
+        expression {
+            return env.GIT_BRANCH == 'origin/v3.5.0';
+        }
+        }
+    }
       steps {
         script {
           echo 'Pulled - ' + env.GIT_BRANCH
