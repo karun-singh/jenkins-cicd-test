@@ -16,10 +16,10 @@ pipeline {
       steps {
         script {
           echo 'Pulled - ' + env.GIT_BRANCH
-          if (env.BRANCH_NAME == 'origin/master') {
+          if (env.GIT_BRANCH == 'origin/master') {
             echo 'I only execute on the master branch'
           } 
-          else if (env.BRANCH_NAME == 'origin/v3.5.0'){
+          else if (env.GIT_BRANCH == 'origin/v3.5.0'){
             echo 'I execute on v3.5.0 branch'
           }
           else{
