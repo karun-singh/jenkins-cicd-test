@@ -12,6 +12,16 @@ pipeline {
   }
 
   stages {
+    hen{
+        anyof{
+          expression {
+            return env.GIT_BRANCH == 'origin/master';
+          }
+          expression {
+            return env.GIT_BRANCH == 'origin/v3.5.0';
+          }
+        }
+      }
     stage('Test conditional') {
       steps {
         script {
