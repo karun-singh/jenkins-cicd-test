@@ -14,13 +14,13 @@ pipeline {
   stages {
     stage('Test conditional') {
       when{
-        anyof{
-        expression {
+        anyOf{
+          expression {
             return env.GIT_BRANCH == 'origin/master';
-        }
-        expression {
+          }
+          expression {
             return env.GIT_BRANCH == 'origin/v3.5.0';
-        }
+          }
         }
     }
       steps {
