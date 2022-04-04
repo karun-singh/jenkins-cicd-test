@@ -15,6 +15,7 @@ pipeline {
     stage('Test conditional') {
       steps {
         script {
+          echo 'Pulled - ' + env.GIT_BRANCH
           if (env.BRANCH_NAME == 'origin/master') {
             echo 'I only execute on the master branch'
           } 
