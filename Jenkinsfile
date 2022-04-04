@@ -12,7 +12,7 @@ pipeline {
   }
 
   stages {
-    hen{
+    when{
         anyof{
           expression {
             return env.GIT_BRANCH == 'origin/master';
