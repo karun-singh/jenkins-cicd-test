@@ -25,7 +25,7 @@ pipeline {
     }
       steps {
         script {
-          echo 'Pulled -- ' + env.GIT_BRANCH
+          echo 'Pulled - ' + env.GIT_BRANCH
           if (env.GIT_BRANCH == 'origin/master') {
             echo 'I only execute on the master branch'
           } 
