@@ -27,5 +27,19 @@ pipeline {
         }
       }
     }
+    stage('testing nested stage'){
+      stages{
+        stage('stage 1 nested'){
+          steps{
+            echo 'stage 1 executed'
+          }
+        }
+        stage('stage 2 nested'){
+          steps{
+            echo 'stage 2 executed'
+          }
+        }
+      }
+    }
   }
 }
