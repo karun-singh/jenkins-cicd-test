@@ -17,6 +17,7 @@ pipeline {
         anyOf {
           changeset "sampleFile.yaml"
           changeset "testFile.txt"
+          triggeredBy user
         }
       }
       steps {
