@@ -27,7 +27,7 @@ pipeline {
         }
       }
     }
-    stage{
+    stage('testing nested stage'){
       stages{
         stage('stage 1 nested'){
           steps{
