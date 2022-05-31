@@ -25,14 +25,6 @@ pipeline {
           }
         }
       }
-      steps {
-        script {
-          echo 'condition met'
-          echo 'Pulled - ' + env.GIT_BRANCH
-        }
-      }
-    }
-    stage('testing nested stage'){
       stages{
         stage('stage 1 nested'){
           steps{
