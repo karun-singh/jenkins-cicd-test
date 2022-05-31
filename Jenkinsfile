@@ -14,10 +14,15 @@ pipeline {
   stages {
     stage('Test conditional') {
       when {
-        anyOf {
-          changeset "sampleFile.yaml"
-          changeset "testFile.txt"
-          triggeredBy cause: 'UserIdCause'
+        allOf{
+          anyOf {
+            changeset "sampleFile.yaml"
+            changeset "testFile.txt"
+            triggeredBy cause: 'UserIdCause'
+          }
+          expression {
+            return env.GIT_BRANCH == 'origin/master';
+          }
         }
       }
       steps {
