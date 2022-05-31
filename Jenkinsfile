@@ -13,8 +13,8 @@ pipeline {
 
   stages {
     stage('Test conditional') {
-      when{
-        anyOf{
+      when {
+        anyOf {
           changeset "sampleFile.yaml"
           changeset "testFile.txt"
         }
@@ -23,7 +23,6 @@ pipeline {
         script {
           echo 'condition met'
           echo 'Pulled - ' + env.GIT_BRANCH
-          }
         }
       }
     }
