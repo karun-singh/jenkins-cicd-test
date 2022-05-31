@@ -17,7 +17,7 @@ pipeline {
         anyOf {
           changeset "sampleFile.yaml"
           changeset "testFile.txt"
-          triggeredBy user
+          triggeredBy cause: 'UserIdCause'
         }
       }
       steps {
