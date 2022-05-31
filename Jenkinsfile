@@ -15,25 +15,14 @@ pipeline {
     stage('Test conditional') {
       when{
         anyOf{
-          expression {
-            return env.GIT_BRANCH == 'origin/master';
-          }
-          expression {
-            return env.GIT_BRANCH == 'origin/v3.5.0';
-          }
+          changeset "sampleFile.yaml"
+          changeset "testFile.txt"
         }
-    }
+      }
       steps {
         script {
+          echo 'condition met'
           echo 'Pulled - ' + env.GIT_BRANCH
-          if (env.GIT_BRANCH == 'origin/master') {
-            echo 'I only execute on the master branch'
-          } 
-          else if (env.GIT_BRANCH == 'origin/v3.5.0'){
-            echo 'I execute on v3.5.0 branch'
-          }
-          else{
-            echo 'did not meet any conditions'
           }
         }
       }
