@@ -15,7 +15,7 @@ pipeline {
       steps{
         script{
           sh '''#!/bin/bash 
-          response_code=$(curl -s -o /dev/null -w \'%{http_code}\\n\' --connect-timeout 5 --retry 5 --retry-connrefused -XGET https://api-docker.catalogue.iudx.io/api)
+          response_code=$(curl -s -o /dev/null -w \'%{http_code}\\n\' --connect-timeout 5 --retry 5 --retry-connrefused -XGET https://api-docker.catalogue.iudx.io/apis)
 
           if [[ "$response_code" -ne "200" ]]
           then
