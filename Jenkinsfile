@@ -12,30 +12,19 @@ pipeline {
   }
 
   stages {
-    stage('Test conditional') {
-      when {
-        allOf{
-          anyOf {
-            changeset "sampleFile.yaml"
-            changeset "testFile.txt"
-            triggeredBy cause: 'UserIdCause'
-          }
-          expression {
-            return env.GIT_BRANCH == 'origin/master';
-          }
-        }
-      }
-      stages{
-        stage('stage 1 nested'){
-          steps{
-            echo 'stage 1 executed'
-          }
-        }
-        stage('stage 2 nested'){
-          steps{
-            echo 'stage 2 executed'
-          }
-        }
+    stage('Test curl') {
+      script{
+        sh '''response_code=$(curl -s -o /dev/null -w \'%{http_code}\\n\' --connect-timeout 5 --retry 5 --retry-connrefused -XGET https://api-docker.catalogue.iudx.io/api)
+
+        if [[ "$response_code" -ne "200" ]]
+        then
+          echo "Health check failed"
+          exit 1
+        else
+          echo "Health check complete; Server is up."
+          exit 0
+        fi
+        ''' 
       }
     }
   }
